@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -ex
-cd $(dirname $0)
+cd "$(dirname $(readlink -f $0))"
 apt="sudo apt-get install -y"
 mpspath="$HOME/mps-youtube"
 has_cmd() {
     hash -r $1 >/dev/null 2>&1
 }
-if ! has_cmd lsb-release;then
+if ! has_cmd lsb_release;then
     $apt lsb-release
 fi
 if ! has_cmd git;then
