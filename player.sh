@@ -27,7 +27,7 @@ fi
 if ! has_cmd virtualenv;then
     $apt python-pip python-virtualenv
 fi
-if uname | grep -q armv;then
+if uname -ar | grep -q armv;then
     if ! has_cmd alsamixer;then
         $apt alsa-utils
     fi
