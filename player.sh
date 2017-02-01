@@ -41,7 +41,12 @@ fi
 cd $mpspath
 [ ! -e $mpspath/venv/bin/ ] && virtualenv --python=python3 $mpspath/venv
 . $mpspath/venv/bin/activate
-[ ! -f $mpspath/venv/bin/youtube-dl ] && pip install  youtube_dl
+if [ ! -f $mpspath/venv/bin/youtube-dl ];then
+    if [ ! -e $mpspath/youtube-dl ];then
+        git clone https://github.com/rg3/youtube-dl.git
+    fi
+    cd youtube-dl;git pull;pip install -e .;cd ..
+fi
 [ ! -f $mpspath/mps-youtube/venv/bin/mpsyt ] && pip install -e .
 reset
 mpsyt
